@@ -1,0 +1,13 @@
+.succes {
+  position: absolute;
+  border-radius: 10px;
+  box-shadow: aliceblue;
+  width: 300px;
+  padding: 15px;
+  font-size: 20px;
+  text-align: center;
+  top: 50px;
+  right: 30px;
+  background-color: #28a745;
+  box-shadow: 5px 5px #98f7ae;
+}

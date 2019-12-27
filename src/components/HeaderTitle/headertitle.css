@@ -1,0 +1,14 @@
+.header-title {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.main-title {
+  font-size: 50px;
+}
+
+.sub-title {
+  font-size: 30px;
+}

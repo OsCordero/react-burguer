@@ -1,0 +1,26 @@
+.cheese {
+  height: 10px;
+  border-radius: 3px;
+  background-color: yellow;
+  position: relative;
+}
+.cheese:before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  border-top: 30px solid yellow;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  z-index: 20;
+}
+
+.cheese:after {
+  content: '';
+  position: absolute;
+  left: 150px;
+  background-color: yellow;
+  border-radius: 0 0 50% 50%;
+  height: 30px;
+  width: 15px;
+  z-index: 35;
+}

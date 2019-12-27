@@ -1,0 +1,12 @@
+.onion {
+  height: 10px;
+  background-color: purple;
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    45deg,
+    purple,
+    purple 90px,
+    rgb(197, 101, 197) 90px,
+    rgb(197, 101, 197) 120px
+  );
+}

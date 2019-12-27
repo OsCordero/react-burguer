@@ -1,38 +1,181 @@
-.App {
-  text-align: center;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: rgb(28, 28, 71);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App {
+  display: grid;
+  row-gap: 50px;
+}
+.content {
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
-@keyframes App-logo-spin {
+.panel {
+  display: grid;
+  row-gap: 50px;
+}
+@keyframes drop {
   from {
-    transform: rotate(0deg);
+    top: -1000px;
   }
   to {
-    transform: rotate(360deg);
+    top: 0px;
   }
+}
+.salad,
+.tomato,
+.onion,
+.meat,
+.cheese {
+  position: relative;
+  animation-name: drop;
+  animation-duration: 0.3s;
+}
+
+.burguer-side {
+  display: grid;
+  grid-template-rows: 30px auto;
+  row-gap: 30px;
+  justify-items: center;
+  justify-content: center;
+}
+.save-burguer {
+  background-color: transparent;
+  width: 200px;
+  border: 2px solid white;
+  border-radius: 20px;
+  color: white;
+  font-size: large;
+
+  box-shadow: 0 5px #999;
+}
+
+.save-burguer:focus {
+  outline-width: 0;
+}
+.save-burguer:active {
+  background-color: rgb(90, 0, 194);
+  box-shadow: 0 5px #666;
+  opacity: 1;
+  transform: translateY(4px);
+}
+
+.currency-select {
+  justify-items: center;
+  margin-bottom: 50px;
+  width: 100%;
+  text-align: center;
+}
+.currency-select label {
+  font-size: x-large;
+}
+select {
+  border: #f2f2f2;
+  color: white;
+  border-bottom: 2px solid white;
+  width: 25%;
+  background-color: transparent;
+  font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
+}
+option {
+  background-color: transparent;
+  color: black;
+}
+select:focus {
+  outline-width: 0;
 }

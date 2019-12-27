@@ -1,0 +1,50 @@
+.salad {
+  height: 10px;
+  border-radius: 7px;
+  background-color: rgb(54, 241, 79);
+  position: relative;
+}
+@keyframes drop {
+  from {
+    top: -1000px;
+  }
+  to {
+    top: 0px;
+  }
+}
+.salad {
+  position: relative;
+  animation-name: drop;
+  animation-duration: 0.5s;
+}
+
+.leaf {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 4px;
+  border-top: 20px solid rgb(54, 241, 79);
+  border-start-end-radius: 50%;
+  border-radius: 12px;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  z-index: 30;
+}
+.leaf:nth-child(2) {
+  left: 34px;
+}
+
+.leaf:nth-child(3) {
+  left: 64px;
+}
+
+.leaf:nth-child(4) {
+  left: 94px;
+}
+
+.leaf:nth-child(5) {
+  left: 124px;
+}
+.leaf:nth-child(6) {
+  left: 154px;
+}

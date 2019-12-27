@@ -1,0 +1,12 @@
+.meat {
+  height: 20px;
+  border-radius: 5px;
+  background-color: rgb(68, 35, 35);
+  background: repeating-linear-gradient(
+    45deg,
+    rgb(77, 43, 43),
+    rgb(77, 43, 43) 20px,
+    rgb(105, 52, 52) 20px,
+    rgb(105, 52, 52) 30px
+  );
+}

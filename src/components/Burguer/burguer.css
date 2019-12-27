@@ -1,0 +1,27 @@
+.burguer-container {
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  max-height: 100px;
+}
+
+.burguer {
+  display: grid;
+  row-gap: 10px;
+  justify-self: center;
+}
+
+@keyframes drop {
+  from {
+    top: -1000px;
+  }
+  to {
+    top: 0px;
+  }
+}
+.ingredient {
+  position: relative;
+  animation-name: drop;
+  animation-duration: 0.5s;
+}

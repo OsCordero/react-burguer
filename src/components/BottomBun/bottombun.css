@@ -1,0 +1,7 @@
+.bottom-bun {
+  height: 60px;
+  width: 200px;
+  background-color: #df7b30;
+  display: block;
+  border-radius: 50% 50% 45% 45% / 3% 3% 95% 95%;
+}

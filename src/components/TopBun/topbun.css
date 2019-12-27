@@ -1,0 +1,49 @@
+.top-bun {
+  height: 80px;
+  position: relative;
+  width: 200px;
+  background-color: #df7b30;
+  display: block;
+  /* border-radius: 50% 50% 48% 52% / 94% 94% 3% 3%; */
+  border-radius: 48% 48% 5% 5% / 95% 95% 3% 3%;
+}
+
+.sesame {
+  content: '';
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  width: 10px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: rgb(105, 62, 62);
+  transform: rotate(130deg);
+}
+.sesame:nth-child(2) {
+  top: 30px;
+  left: 30px;
+}
+.sesame:nth-child(3) {
+  top: 65px;
+  left: 60px;
+}
+.sesame:nth-child(4) {
+  top: 50px;
+  left: 80px;
+}
+.sesame:nth-child(5) {
+  top: 10px;
+  left: 90px;
+}
+.sesame:nth-child(6) {
+  top: 39px;
+  left: 130px;
+}
+.sesame:nth-child(7) {
+  top: 20px;
+  left: 150px;
+}
+.sesame:nth-child(8) {
+  top: 70px;
+  left: 170px;
+}

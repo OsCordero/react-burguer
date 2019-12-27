@@ -1,0 +1,19 @@
+.tomato {
+  height: 10px;
+  background-color: #e83330;
+  border-radius: 20px;
+}
+
+@keyframes drop {
+  from {
+    top: -1000px;
+  }
+  to {
+    top: 0px;
+  }
+}
+.tomato {
+  position: relative;
+  animation-name: drop;
+  animation-duration: 0.5s;
+}

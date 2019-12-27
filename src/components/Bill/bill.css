@@ -1,0 +1,58 @@
+.bill {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.bill-table {
+  width: 90%;
+  margin: 0 auto;
+}
+table {
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+}
+
+tr th,
+tr td {
+  padding: 10px;
+  font-size: large;
+  border-bottom: 1px solid #ddd;
+}
+thead {
+  font-weight: bolder;
+}
+
+.total-label {
+  margin-top: 30px;
+  text-align: center;
+  font-size: xx-large;
+}
+.total-label span {
+  color: green;
+  font-size: 50px;
+}
+
+.less-btn {
+  background-color: transparent;
+  width: 50px;
+  border: 2px solid white;
+  border-radius: 20px;
+  color: white;
+  font-size: large;
+  justify-self: flex-start;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 5px #999;
+}
+
+.less-btn:focus {
+  outline-width: 0;
+}
+.less-btn:active {
+  background-color: red;
+  box-shadow: 0 5px #666;
+  opacity: 1;
+  transform: translateY(4px);
+}

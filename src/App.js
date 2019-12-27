@@ -3,6 +3,7 @@ import Burguer from './components/Burguer/Burguer';
 import HeaderTitle from './components/HeaderTitle/HeaderTitle';
 import ButtonPanel from './components/ButtonPanel/ButtonPanel';
 import SuccessMessage from './components/messages/SuccessMessage.js';
+import { getNewConversionValue } from './helpers/currencyStateHandler';
 import jsonServer from './api/json-server';
 import './App.css';
 const Bill = React.lazy(() => import('./components/Bill/Bill'));
@@ -23,64 +24,64 @@ class App extends React.Component {
       change: 1.0,
     },
     isSuccess: false,
+    isMessageShow: false,
   };
 
   saveBurger = async () => {
-    const { quantities, ingredients, total } = this.state;
+    const { quantities, ingredients, total, currency } = this.state;
 
     const response = await jsonServer.post('/burguers', {
       quantities,
       ingredients,
       total,
+      currency,
     });
     if (response.status >= 200 && response.status < 300) {
-      this.setState({ isSuccess: true });
+      this.setState({ isSuccess: true, isMessageShow: true });
+
+      setTimeout(() => {
+        this.setState({ isMessageShow: false });
+      }, 2000);
       setTimeout(() => {
         this.setState({ isSuccess: false });
-      }, 2000);
+      }, 2600);
     }
   };
 
   calculateTotal(ingredientsKeys, quantities) {
     const { ingredientsPrices } = { ...this.state };
     let total = this.state.currency.change;
-
     ingredientsKeys.forEach(ingredient => {
       total += quantities[ingredient] * ingredientsPrices[ingredient];
     });
     return total;
   }
 
-  onCurrencyChange(newCurrency) {
+  async onCurrencyChange(newCurrency) {
     const { ingredientsPrices } = this.state;
-    let newPrices = [];
-    switch (newCurrency) {
-      case 'USD':
-        this.setState({ currency: { currency: 'USD', change: 1.0 } });
-        newPrices = Object.keys(ingredientsPrices).map(ingredient => {
-          return (ingredientsPrices[ingredient] *= 1.0).toFixed(2);
-        });
-        break;
-      case 'EUR':
-        this.setState({ currency: { currency: 'EUR', change: 0.9 } });
-        newPrices = Object.keys(ingredientsPrices).map(ingredient => {
-          return (ingredientsPrices[ingredient] *= 0.9).toFixed(2);
-        });
-        break;
-      case 'GTQ':
-        this.setState({ currency: { currency: 'GTQ', change: 7.7 } });
-        newPrices = Object.keys(ingredientsPrices).map(ingredient => {
-          return (ingredientsPrices[ingredient] *= 7.7).toFixed(2);
-        });
-        break;
-      default:
-        break;
-    }
-    const total = this.calculateTotal(
+    const conversion = getNewConversionValue(
+      this.state.currency.currency,
+      newCurrency
+    );
+
+    const newChange = this.state.currency.change * conversion;
+
+    Object.keys(ingredientsPrices).forEach(ingredient => {
+      ingredientsPrices[ingredient] = +(
+        ingredientsPrices[ingredient] * conversion
+      ).toFixed(2);
+    });
+
+    await this.setState({
+      currency: { currency: newCurrency, change: +newChange.toFixed(2) },
+      ingredientsPrices,
+    });
+
+    const total = await this.calculateTotal(
       Object.keys(this.state.quantities),
       this.state.quantities
     );
-    this.setState({ ingredientsPrices: ingredientsPrices, total });
+    this.setState({ total });
   }
 
   onIngredientAdd = (quantities, ingredients) => {
@@ -111,27 +112,24 @@ class App extends React.Component {
       ingredientsPrices,
       total,
       isSuccess,
+      isMessageShow,
     } = this.state;
     return (
       <div className="App">
         <HeaderTitle></HeaderTitle>
-        {isSuccess && <SuccessMessage />}
+        {isSuccess && (
+          <SuccessMessage
+            shouldShow={
+              isMessageShow ? 'animated fadeInDown' : 'animated fadeOut'
+            }
+          />
+        )}
         <div className="content">
           <div className="panel">
             <ButtonPanel
               buttons={ingredientsPrices}
               onIngredientAdd={this.onIngredientAdd}
             />
-            <Suspense fallback={<div>Loading...</div>}>
-              {Object.keys(this.state.quantities).length >= 1 && (
-                <Bill
-                  onIngredientRemove={this.onIngredientRemove}
-                  ingredientsBill={quantities}
-                  ingredientsPrices={ingredientsPrices}
-                  total={total}
-                />
-              )}
-            </Suspense>
             <div className="currency-select">
               <label htmlFor="currency">Currency type: </label>
               <select
@@ -144,6 +142,16 @@ class App extends React.Component {
                 <option value="EUR">EUR</option>
               </select>
             </div>
+            <Suspense fallback={<div>Loading...</div>}>
+              {Object.keys(this.state.quantities).length >= 1 && (
+                <Bill
+                  onIngredientRemove={this.onIngredientRemove}
+                  ingredientsBill={quantities}
+                  ingredientsPrices={ingredientsPrices}
+                  total={total}
+                />
+              )}
+            </Suspense>
           </div>
           <div className="burguer-side">
             <button className="save-burguer" onClick={this.saveBurger}>

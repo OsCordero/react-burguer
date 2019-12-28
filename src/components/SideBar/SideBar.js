@@ -18,7 +18,7 @@ export default class SideBar extends Component {
     this.props.loadHistory(ingredients);
     this.setState({ isSideBarShowed: true });
   };
-  render(props) {
+  render() {
     const { isSideBarShowed } = this.state;
 
     return (

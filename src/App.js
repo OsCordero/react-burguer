@@ -4,6 +4,7 @@ import HeaderTitle from './components/HeaderTitle/HeaderTitle';
 import ButtonPanel from './components/ButtonPanel/ButtonPanel';
 import SuccessMessage from './components/messages/SuccessMessage.js';
 import { getNewConversionValue } from './helpers/currencyStateHandler';
+import SideBar from './components/SideBar/SideBar';
 import jsonServer from './api/json-server';
 import './App.css';
 const Bill = React.lazy(() => import('./components/Bill/Bill'));
@@ -25,6 +26,11 @@ class App extends React.Component {
     },
     isSuccess: false,
     isMessageShow: false,
+    ingredientHistory: [],
+  };
+
+  loadHistory = data => {
+    this.setState({ ingredientHistory: data });
   };
 
   saveBurger = async () => {
@@ -111,12 +117,20 @@ class App extends React.Component {
       ingredients,
       ingredientsPrices,
       total,
+      currency,
       isSuccess,
       isMessageShow,
+      ingredientHistory,
     } = this.state;
     return (
       <div className="App">
         <HeaderTitle></HeaderTitle>
+
+        <SideBar loadHistory={this.loadHistory}>
+          {ingredientHistory.map(
+            (ingredients => <Burguer ingredients={ingredients} />: null)
+          )}
+        </SideBar>
         {isSuccess && (
           <SuccessMessage
             shouldShow={
@@ -129,6 +143,7 @@ class App extends React.Component {
             <ButtonPanel
               buttons={ingredientsPrices}
               onIngredientAdd={this.onIngredientAdd}
+              currency={currency.currency}
             />
             <div className="currency-select">
               <label htmlFor="currency">Currency type: </label>
@@ -148,6 +163,7 @@ class App extends React.Component {
                   onIngredientRemove={this.onIngredientRemove}
                   ingredientsBill={quantities}
                   ingredientsPrices={ingredientsPrices}
+                  currency={currency.currency}
                   total={total}
                 />
               )}

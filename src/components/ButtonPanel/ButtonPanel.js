@@ -15,9 +15,19 @@ export default class ButtonPanel extends Component {
     this.props.onIngredientAdd(auxButtons, auxIngredients);
   };
 
+  fortmatCurrency(currency, total) {
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency,
+      minimumFractionDigits: 2,
+    });
+
+    return formatter.format(total);
+  }
+
   // eslint-disable-next-line no-unused-vars
   render(props) {
-    const { buttons } = this.props;
+    const { buttons, currency } = this.props;
 
     return (
       <div className="button-panel">
@@ -28,7 +38,7 @@ export default class ButtonPanel extends Component {
             key={index}
             onClick={this.onButtonClick}
           >
-            Add {button} - ({buttons[button]} USD)
+            Add {button} - ({this.fortmatCurrency(currency, buttons[button])} )
           </button>
         ))}
       </div>

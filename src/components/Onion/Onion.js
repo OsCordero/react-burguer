@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './onion.css';
-export default class Onion extends Component {
-  render() {
-    return <div className="onion"></div>;
-  }
+export default function Onion() {
+  return <div className="onion"></div>;
 }

@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
 import './bill.css';
 export default class Bill extends Component {
+  fortmatCurrency(currency, total) {
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency,
+      minimumFractionDigits: 2,
+    });
+
+    return formatter.format(total);
+  }
   // eslint-disable-next-line no-unused-vars
   render(props) {
     const {
       ingredientsBill,
       ingredientsPrices,
       total,
+      currency,
       onIngredientRemove,
     } = this.props;
 
@@ -52,7 +62,7 @@ export default class Bill extends Component {
           </table>
         </div>
         <h2 className="total-label">
-          <span>Total: </span> {total.toFixed(2)}
+          <span>Total: </span> {this.fortmatCurrency(currency, total)}
         </h2>
       </div>
     );

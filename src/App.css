@@ -144,9 +144,11 @@ html {
   box-shadow: 0 5px #999;
 }
 
-.save-burguer:focus {
+.save-burguer:focus,
+.open-side-bar:focus {
   outline-width: 0;
 }
+
 .save-burguer:active {
   background-color: rgb(90, 0, 194);
   box-shadow: 0 5px #666;
@@ -156,7 +158,7 @@ html {
 
 .currency-select {
   justify-items: center;
-  margin-bottom: 50px;
+
   width: 100%;
   text-align: center;
 }

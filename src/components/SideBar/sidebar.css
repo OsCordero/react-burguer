@@ -1,0 +1,55 @@
+.open-side-bar {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 30px;
+  background-color: transparent;
+  text-shadow: 5px 5px black;
+  border: none;
+  color: white;
+}
+.open-side-bar:active {
+  transform: translateY(4px);
+}
+
+.close-side-bar {
+  font-size: 30px;
+  background-color: transparent;
+  text-shadow: 5px 5px black;
+  border: none;
+  color: white;
+}
+
+.side-bar-content {
+  background-color: rgba(16, 16, 41, 0.7);
+  min-height: 100%;
+  height: fit-content;
+  justify-content: center;
+  display: grid;
+  grid-auto-rows: minmax(min-content, max-content);
+  row-gap: 30px;
+  position: absolute;
+  top: 0;
+}
+
+.side-bar-content .burguer-container {
+  width: 200px;
+  min-width: 100%;
+}
+.side-bar-content .burguer {
+  row-gap: 3px;
+}
+.side-bar-content .burguer-container .burguer .top-bun,
+.side-bar-content .burguer-container .burguer .bottom-bun {
+  height: 30px;
+}
+.side-bar-content .burguer-container .burguer > div {
+  width: 100px;
+}
+
+.side-bar-content .cheese:after,
+.side-bar-content .cheese:before,
+.side-bar-content .leaf,
+.side-bar-content .sesame {
+  display: none;
+}

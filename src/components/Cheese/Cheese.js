@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './cheese.css';
-export default class Cheese extends Component {
-  render() {
-    return <div className="cheese"></div>;
-  }
+export default function Cheese() {
+  return <div className="cheese"></div>;
 }

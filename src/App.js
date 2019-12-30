@@ -64,13 +64,10 @@ class App extends React.Component {
   }
 
   async onCurrencyChange(newCurrency) {
-    const { ingredientsPrices } = this.state;
-    const conversion = getNewConversionValue(
-      this.state.currency.currency,
-      newCurrency
-    );
+    const { ingredientsPrices, currency, quantities } = this.state;
+    const conversion = getNewConversionValue(currency.currency, newCurrency);
 
-    const newChange = this.state.currency.change * conversion;
+    const newChange = currency.change * conversion;
 
     Object.keys(ingredientsPrices).forEach(ingredient => {
       ingredientsPrices[ingredient] = +(
@@ -84,8 +81,8 @@ class App extends React.Component {
     });
 
     const total = await this.calculateTotal(
-      Object.keys(this.state.quantities),
-      this.state.quantities
+      Object.keys(quantities),
+      quantities
     );
     this.setState({ total });
   }
@@ -97,14 +94,15 @@ class App extends React.Component {
   };
 
   onIngredientRemove = removed => {
-    const ingredientsBeforeRemove = this.state.ingredients.reverse();
+    const { ingredients, quantities } = this.state;
+    const ingredientsBeforeRemove = ingredients.reverse();
     let total = 1.0;
     if (ingredientsBeforeRemove.indexOf(removed) >= 0) {
       ingredientsBeforeRemove.splice(
         ingredientsBeforeRemove.indexOf(removed),
         1
       );
-      const quantitiesBeforeRemove = this.state.quantities;
+      const quantitiesBeforeRemove = quantities;
       quantitiesBeforeRemove[removed] -= 1;
       const ingredientsKeys = Object.keys(quantitiesBeforeRemove);
       total = this.calculateTotal(ingredientsKeys, quantitiesBeforeRemove);
@@ -158,7 +156,7 @@ class App extends React.Component {
               </select>
             </div>
             <Suspense fallback={<div>Loading...</div>}>
-              {Object.keys(this.state.quantities).length >= 1 && (
+              {Object.keys(quantities).length >= 1 && (
                 <Bill
                   onIngredientRemove={this.onIngredientRemove}
                   ingredientsBill={quantities}
